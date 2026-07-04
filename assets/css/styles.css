@@ -525,7 +525,7 @@ section:last-child {
   margin-top: var(--spacing-sm);
 }
 
-/* ── Product Card Header (icon + name) ───────────────────────────────── */
+/* ── Product Card Header (icon + name) ─────────────────────────── */
 .card-header {
   display: flex;
   align-items: center;
@@ -546,7 +546,7 @@ section:last-child {
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
-/* ── GetSorted product page header ─────────────────────────────────── */
+/* ── GetSorted product page header ─────────────────────────────── */
 .product-page-header {
   display: flex;
   align-items: center;
@@ -573,7 +573,7 @@ section:last-child {
   margin: 0;
 }
 
-/* ── Refined Product Cards (App Store style) ─────────────────────── */
+/* ── Refined Product Cards (App Store style) ───────────────────── */
 .product-card--featured {
   border-top: 4px solid var(--color-teal);
   padding-top: 28px;
@@ -599,7 +599,7 @@ section:last-child {
   font-size: 1.35rem;
 }
 
-/* ── About page product list ─────────────────────────────────────── */
+/* ── About page product list ───────────────────────────────────── */
 .about-products {
   margin-top: 2.5rem;
   padding-top: 2rem;
@@ -621,7 +621,7 @@ section:last-child {
   padding: 4px 0;
 }
 
-/* ── Footer sub line ─────────────────────────────────────────────── */
+/* ── Footer sub line ───────────────────────────────────────────── */
 .footer-sub {
   margin-top: 6px;
   font-size: 0.82rem;

@@ -627,3 +627,22 @@ section:last-child {
   font-size: 0.82rem;
   opacity: 0.65;
 }
+
+/* ── Logo images ────────────────────────────────────────────────── */
+.nav-logo {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+.footer-logo-wrap {
+  margin-bottom: 16px;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.95;
+}

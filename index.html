@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrightCasa — Software that helps organize everyday life</title>
+  <title>BrightCasa — Making everyday life a little easier</title>
   <meta name="description" content="BrightCasa builds thoughtfully designed apps that help people organize their homes, spend with confidence, and simplify everyday life — without adding more stress.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,31 +11,33 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
   <header class="site-header">
     <div class="container">
-      <!-- Logo placeholder: replace with <img> when brand logo is ready -->
-      <div class="logo"><a href="index.html">BrightCasa</a></div>
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
-      <nav class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="products.html">Products</a>
-        <a href="about.html">About</a>
-        <a href="support.html">Support</a>
+      <nav class="site-nav">
+        <div class="logo"><a href="index.html"><img src="assets/images/brightcasa-logo-light.png" alt="BrightCasa" class="nav-logo"></a></div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <div class="container">
-
-      <section class="hero">
+    <section class="hero">
+      <div class="container">
         <h1>Making everyday life a little easier.</h1>
         <p class="subheadline">BrightCasa builds thoughtfully designed apps that help people organize their homes, spend with confidence, and simplify everyday life — without adding more stress.</p>
-        </section>
+        
+      </div>
+    </section>
 
-      <section>
+    <section class="products-section">
+      <div class="container">
         <h2>Our Products</h2>
         <div class="product-cards product-cards--home">
           <div class="product-card product-card--featured">
@@ -55,21 +57,22 @@
             <p class="mt-sm"><a href="spendbright.html" class="card-link">Learn more →</a></p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="why-section">
+    <section class="why-section">
+      <div class="container">
         <h2>Why BrightCasa?</h2>
         <p>We believe technology should reduce stress — not create it. Every BrightCasa product is designed to solve everyday problems with simple, thoughtful software that respects users' privacy and saves time.</p>
-      </section>
-
-    </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
+    <div class="footer-logo-wrap"><img src="assets/images/brightcasa-logo-dark.png" alt="BrightCasa" class="footer-logo"></div>
     <p>BrightCasa LLC · Foley, Alabama · <a href="mailto:hello@brightcasa.co">hello@brightcasa.co</a></p>
     <p class="footer-sub">Designed in Alabama.</p>
     <p>© 2026 BrightCasa LLC. All rights reserved.</p>
   </footer>
-
 </body>
 </html>

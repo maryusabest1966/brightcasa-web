@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetSorted Beta — Join Early Access</title>
+  <meta name="description" content="Sign up for early access to GetSorted, the AI-powered home organization app by BrightCasa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .beta-form-section { max-width: 520px; margin: 0 auto; }
+    .beta-form { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .beta-form label { font-family: 'Inter', sans-serif; font-size: 14px; color: #4A5568; font-weight: 500; }
+    .beta-form input, .beta-form select, .beta-form textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid #CBD5E0; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #2D3748;
+      transition: border-color 0.2s;
+    }
+    .beta-form input:focus, .beta-form select:focus, .beta-form textarea:focus {
+      outline: none; border-color: #1F4E79; box-shadow: 0 0 0 3px rgba(31,78,121,0.1);
+    }
+    .beta-form textarea { resize: vertical; min-height: 80px; }
+    .beta-form .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .beta-submit {
+      background: #1F4E79; color: #fff; border: none; padding: 14px 28px;
+      border-radius: 8px; font-family: 'Manrope', sans-serif; font-weight: 600;
+      font-size: 16px; cursor: pointer; transition: background 0.2s; margin-top: 8px;
+    }
+    .beta-submit:hover { background: #163d5e; }
+    .beta-submit:disabled { background: #A0AEC0; cursor: not-allowed; }
+    .form-message { padding: 14px 18px; border-radius: 8px; font-size: 15px; margin-top: 16px; display: none; }
+    .form-message--success { background: #F0FFF4; border: 1px solid #9AE6B4; color: #276749; }
+    .form-message--error { background: #FFF5F5; border: 1px solid #FEB2B2; color: #9B2C2C; }
+    .form-message--visible { display: block; }
+    .beta-privacy { font-size: 13px; color: #718096; margin-top: 12px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="site-nav">
+        <div class="logo"><a href="index.html"><img src="assets/images/brightcasa-logo-light.png" alt="BrightCasa" class="nav-logo"></a></div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="page-heading">
+        <div class="product-page-header">
+          <img src="assets/images/getsorted-icon.png" alt="GetSorted app icon" class="product-page-icon">
+          <div>
+            <h1>GetSorted Early Access</h1>
+            <p class="product-tagline">Be among the first to organize smarter.</p>
+          </div>
+        </div>
+      </section>
+      <section class="beta-form-section">
+        <p>GetSorted is almost ready for beta testing. Sign up below and we'll email you when your invitation is ready.</p>
+        <form class="beta-form" id="betaForm" novalidate>
+          <div class="form-group">
+            <label for="first_name">First Name *</label>
+            <input type="text" id="first_name" name="first_name" required placeholder="Your first name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="device">What device will you use?</label>
+            <select id="device" name="device">
+              <option value="">Select one (optional)</option>
+              <option value="iPhone/iPad">iPhone / iPad</option>
+              <option value="Android">Android</option>
+              <option value="Both">Both</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="organizing_interest">What are you most excited to organize?</label>
+            <input type="text" id="organizing_interest" name="organizing_interest" placeholder="Kitchen, garage, storage unit...">
+          </div>
+          <div class="form-group">
+            <label for="referral_source">How did you hear about GetSorted?</label>
+            <input type="text" id="referral_source" name="referral_source" placeholder="Friend, social media, search...">
+          </div>
+          <button type="submit" class="beta-submit" id="submitBtn">Join the Beta List</button>
+          <div class="form-message form-message--success" id="successMsg">You're on the list! We'll email you when your beta invitation is ready.</div>
+          <div class="form-message form-message--error" id="errorMsg"></div>
+          <p class="beta-privacy">Your email will only be used for BrightCasa and GetSorted beta updates. We will never sell or share your information. <a href="getsorted-privacy.html">Privacy Policy</a></p>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-logo-wrap"><img src="assets/images/brightcasa-logo-dark.png" alt="BrightCasa" class="footer-logo"></div>
+    <p>BrightCasa LLC · Foley, Alabama · <a href="mailto:hello@brightcasa.co">hello@brightcasa.co</a></p>
+    <p class="footer-sub">Designed in Alabama.</p>
+    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p>© 2026 BrightCasa LLC. All rights reserved.</p>
+  </footer>
+  <script>
+  (function() {
+    const API = 'https://64d92198-030f-4a56-8064-819edb3c2131.emergentagent.com/api/early-access/subscribe';
+    const form = document.getElementById('betaForm');
+    const btn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      successMsg.classList.remove('form-message--visible');
+      errorMsg.classList.remove('form-message--visible');
+
+      const firstName = form.first_name.value.trim();
+      const email = form.email.value.trim();
+      if (!firstName || !email) {
+        errorMsg.textContent = 'Please enter your name and email.';
+        errorMsg.classList.add('form-message--visible');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            email: email,
+            device: form.device.value || null,
+            organizing_interest: form.organizing_interest.value.trim() || null,
+            referral_source: form.referral_source.value.trim() || null
+          })
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.classList.add('form-message--visible');
+        } else {
+          const data = await res.json().catch(() => ({}));
+          const msg = data.detail || 'Something went wrong. Please try again.';
+          errorMsg.textContent = msg;
+          errorMsg.classList.add('form-message--visible');
+          btn.disabled = false;
+          btn.textContent = 'Join the Beta List';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Network error. Please check your connection and try again.';
+        errorMsg.classList.add('form-message--visible');
+        btn.disabled = false;
+        btn.textContent = 'Join the Beta List';
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

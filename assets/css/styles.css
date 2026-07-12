@@ -215,6 +215,33 @@ section:last-child {
   padding: var(--spacing-lg) var(--spacing-md);
 }
 
+/* ── Footer brand block ─────────────────────────────────────────── */
+.footer-brand {
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-tagline {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.70);
+  margin: 6px 0 0;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+/* ── Footer company info ────────────────────────────────────────── */
+.footer-info--desktop {
+  display: none;
+}
+
+.footer-info--mobile p {
+  margin-bottom: 2px;
+}
+
+@media (min-width: 640px) {
+  .footer-info--desktop { display: block; }
+  .footer-info--mobile  { display: none; }
+}
+
 .site-footer p {
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: var(--spacing-xs);
@@ -621,13 +648,6 @@ section:last-child {
   padding: 4px 0;
 }
 
-/* ── Footer sub line ───────────────────────────────────────────── */
-.footer-sub {
-  margin-top: 6px;
-  font-size: 0.82rem;
-  opacity: 0.65;
-}
-
 /* ── Logo images ────────────────────────────────────────────────── */
 .nav-logo {
   height: 52px;
@@ -636,15 +656,17 @@ section:last-child {
 }
 
 .footer-logo-wrap {
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 }
 
 .footer-logo {
-  height: 40px;
-  width: auto;
+  width: 140px;
+  height: auto;
   display: block;
   margin: 0 auto;
-  opacity: 0.95;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 7px 14px;
 }
 
 /* ── Privacy Policy page ────────────────────────────────────────── */

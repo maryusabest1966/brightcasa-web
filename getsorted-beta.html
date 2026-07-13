@@ -17,6 +17,7 @@
       width: 100%; padding: 12px 14px; border: 1px solid #CBD5E0; border-radius: 8px;
       font-family: 'Inter', sans-serif; font-size: 15px; color: #2D3748;
       transition: border-color 0.2s;
+      -webkit-appearance: none; box-sizing: border-box;
     }
     .beta-form input:focus, .beta-form select:focus, .beta-form textarea:focus {
       outline: none; border-color: #1F4E79; box-shadow: 0 0 0 3px rgba(31,78,121,0.1);
@@ -62,8 +63,8 @@
           <p class="tagline">Be among the first to try GetSorted &mdash; the AI-powered home organization app.</p>
         </div>
 
-        <div class="form-message form-message--success" id="successMsg">You&rsquo;re on the list! We&rsquo;ll email you as soon as beta invitations become available.</div>
-        <div class="form-message form-message--error" id="errorMsg"></div>
+        <div class="form-message form-message--success" id="successMsg" style="display:none">You&rsquo;re on the list! We&rsquo;ll email you as soon as beta invitations become available.</div>
+        <div class="form-message form-message--error" id="errorMsg" style="display:none"></div>
 
         <form class="beta-form" id="betaForm" novalidate>
           <div class="form-group">
@@ -126,12 +127,14 @@
       e.preventDefault();
       successMsg.classList.remove('form-message--visible');
       errorMsg.classList.remove('form-message--visible');
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
 
       const firstName = form.first_name.value.trim();
       const email = form.email.value.trim();
       if (!firstName || !email) {
         errorMsg.textContent = 'Please enter your name and email.';
-        errorMsg.classList.add('form-message--visible');
+        errorMsg.style.display = 'block';
         return;
       }
 
@@ -152,18 +155,18 @@
         });
         if (res.ok) {
           form.style.display = 'none';
-          successMsg.classList.add('form-message--visible');
+          successMsg.style.display = 'block';
         } else {
           const data = await res.json().catch(() => ({}));
           const msg = data.detail || 'Something went wrong. Please try again.';
           errorMsg.textContent = msg;
-          errorMsg.classList.add('form-message--visible');
+          errorMsg.style.display = 'block';
           btn.disabled = false;
           btn.textContent = 'Join the Beta List';
         }
       } catch (err) {
         errorMsg.textContent = 'Our signup service is temporarily unavailable. Please try again shortly, or email hello@brightcasa.co to join the list.';
-        errorMsg.classList.add('form-message--visible');
+        errorMsg.style.display = 'block';
         btn.disabled = false;
         btn.textContent = 'Join the Beta List';
       }

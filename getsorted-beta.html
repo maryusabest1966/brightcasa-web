@@ -72,13 +72,18 @@
 
   <main>
     <div class="container">
-      <section class="beta-form-section">
-        <div class="page-heading">
+      <section class="beta-form-section" id="betaHero">
+        <div class="page-heading" id="signupHero">
           <h1>Join the GetSorted Beta</h1>
           <p class="tagline">Be among the first to try GetSorted &mdash; the AI-powered home organization app.</p>
         </div>
 
-        <div class="form-message form-message--success" id="successMsg" style="display:none">You&rsquo;re on the list! We&rsquo;ll email you as soon as beta invitations become available.</div>
+        <div id="confirmHero" style="display:none; text-align:center; padding: 16px 0 24px;">
+          <div style="font-size: 2.75rem; line-height: 1; margin-bottom: 16px;">&#x1F389;</div>
+          <h1 style="margin-bottom: 12px;">You&rsquo;re on the list!</h1>
+          <p class="tagline" style="margin-bottom: 0;">Thanks for signing up for the GetSorted beta.<br>We&rsquo;ll email you as soon as beta invitations become available.</p>
+        </div>
+
         <div class="form-message form-message--error" id="errorMsg" style="display:none"></div>
 
         <form class="beta-form" id="betaForm" novalidate>
@@ -135,14 +140,11 @@
 
     const form = document.getElementById('betaForm');
     const btn = document.getElementById('submitBtn');
-    const successMsg = document.getElementById('successMsg');
     const errorMsg = document.getElementById('errorMsg');
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      successMsg.classList.remove('form-message--visible');
       errorMsg.classList.remove('form-message--visible');
-      successMsg.style.display = 'none';
       errorMsg.style.display = 'none';
 
       const firstName = form.first_name.value.trim();
@@ -169,8 +171,10 @@
           })
         });
         if (res.ok) {
+          document.getElementById('signupHero').style.display = 'none';
+          document.getElementById('confirmHero').style.display = 'block';
           form.style.display = 'none';
-          successMsg.style.display = 'block';
+          document.getElementById('betaHero').scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
           const data = await res.json().catch(() => ({}));
           const msg = data.detail || 'Something went wrong. Please try again.';
@@ -180,7 +184,7 @@
           btn.textContent = 'Join the Beta List';
         }
       } catch (err) {
-        errorMsg.textContent = 'Our signup service is temporarily unavailable. Please try again shortly, or email hello@brightcasa.co to join the list.';
+        errorMsg.textContent = 'Our signup service is temporarily unavailable. Please try again shortly, or semail hello@brightcasa.co to join the list.';
         errorMsg.style.display = 'block';
         btn.disabled = false;
         btn.textContent = 'Join the Beta List';

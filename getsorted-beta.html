@@ -174,7 +174,7 @@
           document.getElementById('signupHero').style.display = 'none';
           document.getElementById('confirmHero').style.display = 'block';
           form.style.display = 'none';
-          document.getElementById('betaHero').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('confirmHero').scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
           const data = await res.json().catch(() => ({}));
           const msg = data.detail || 'Something went wrong. Please try again.';
@@ -194,3 +194,4 @@
   </script>
 </body>
 </html>
+

@@ -1,6 +1,6 @@
-/* ==========================================================================
+/* =============================================================================
    BrightCasa LLC — Global Stylesheet
-   ========================================================================== */
+   ================================================================================ */
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
@@ -626,7 +626,7 @@ section:last-child {
   font-size: 1.35rem;
 }
 
-/* ── About page product list ───────────────────────────────────── */
+/* ── About page product list ────────────────────────────────────── */
 .about-products {
   margin-top: 2.5rem;
   padding-top: 2rem;
@@ -650,7 +650,7 @@ section:last-child {
 
 
 
-/* ── Logo images ────────────────────────────────────────────────── */
+/* ── Logo images ─────────────────────────────────────────────────── */
 .nav-logo {
   height: 52px;
   width: auto;
@@ -715,26 +715,32 @@ section:last-child {
 }
 
 
-/* ── Beta CTA button ────────────────────────────────────────────── */
+/* ── Beta CTA button ─────────────────────────────────────────────── */
 .btn-primary-cta {
   display: inline-block;
-  background: var(--color-primary-blue);
+  background: var(--color-soft-teal);
   color: #ffffff;
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1rem;
   padding: 14px 32px;
   min-height: 48px;
-  border-radius: 8px;
+  border-radius: 9999px;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
   line-height: 1.4;
 }
 
 .btn-primary-cta:hover {
-  background: #163d5e;
+  background: #279490;
   text-decoration: none;
   color: #ffffff;
+  box-shadow: 0 2px 12px rgba(47, 168, 161, 0.28);
+}
+
+.btn-primary-cta:focus-visible {
+  outline: 3px solid rgba(47, 168, 161, 0.5);
+  outline-offset: 3px;
 }
 
 .beta-cta-block {
@@ -747,7 +753,7 @@ section:last-child {
   font-size: 0.9rem;
   color: var(--color-text-secondary);
 }
-/* ── Footer nav link ────────────────────────────────────────────── */
+/* ── Footer nav link ─────────────────────────────────────────────── */
 .site-footer a {
   color: rgba(255,255,255,0.75);
   text-decoration: none;
@@ -755,4 +761,49 @@ section:last-child {
 .site-footer a:hover {
   color: #fff;
   text-decoration: underline;
+}
+
+/* ── GetSorted Product Hero ─────────────────────────────────────── */
+.product-hero {
+  text-align: center;
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.product-hero-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  object-fit: contain;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  margin: 0 auto var(--spacing-md);
+}
+
+.product-hero-name {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.product-hero-tagline {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ── Status box ───────────────────────────────────────────────── */
+.status-box {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.status-box--teal {
+  background: rgba(47, 168, 161, 0.10);
+  border: 1px solid rgba(47, 168, 161, 0.30);
+  color: #1A6B66;
 }

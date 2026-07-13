@@ -648,6 +648,8 @@ section:last-child {
   padding: 4px 0;
 }
 
+
+
 /* ── Logo images ────────────────────────────────────────────────── */
 .nav-logo {
   height: 52px;
@@ -712,6 +714,39 @@ section:last-child {
   line-height: 1.75;
 }
 
+
+/* ── Beta CTA button ────────────────────────────────────────────── */
+.btn-primary-cta {
+  display: inline-block;
+  background: var(--color-primary-blue);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 32px;
+  min-height: 48px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+  line-height: 1.4;
+}
+
+.btn-primary-cta:hover {
+  background: #163d5e;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.beta-cta-block {
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+.beta-cta-sub {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
 /* ── Footer nav link ────────────────────────────────────────────── */
 .site-footer a {
   color: rgba(255,255,255,0.75);

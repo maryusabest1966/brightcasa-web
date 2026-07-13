@@ -14,10 +14,25 @@
     .beta-form { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
     .beta-form label { font-family: 'Inter', sans-serif; font-size: 14px; color: #4A5568; font-weight: 500; }
     .beta-form input, .beta-form select, .beta-form textarea {
-      width: 100%; padding: 12px 14px; border: 1px solid #CBD5E0; border-radius: 8px;
+      width: 100%; padding: 12px 14px;
+      border: 1px solid #CBD5E0; border-radius: 8px;
+      background-color: #ffffff;
       font-family: 'Inter', sans-serif; font-size: 15px; color: #2D3748;
       transition: border-color 0.2s;
       -webkit-appearance: none; box-sizing: border-box;
+    }
+    .beta-form input:hover, .beta-form select:hover, .beta-form textarea:hover {
+      border-color: #A0AEC0;
+    }
+    .beta-form input::placeholder, .beta-form textarea::placeholder {
+      color: #A0AEC0; opacity: 1;
+    }
+    .beta-form input:-webkit-autofill,
+    .beta-form input:-webkit-autofill:hover,
+    .beta-form input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 30px #ffffff inset;
+      -webkit-text-fill-color: #2D3748;
+      caret-color: #2D3748;
     }
     .beta-form input:focus, .beta-form select:focus, .beta-form textarea:focus {
       outline: none; border-color: #1F4E79; box-shadow: 0 0 0 3px rgba(31,78,121,0.1);

@@ -567,10 +567,8 @@ section:last-child {
 .card-icon {
   width: 56px;
   height: 56px;
-  border-radius: 12px;
   object-fit: contain;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
 /* ── GetSorted product page header ─────────────────────────────── */
@@ -618,8 +616,6 @@ section:last-child {
 .card-icon {
   width: 72px;
   height: 72px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.13);
 }
 
 .card-header h3 {

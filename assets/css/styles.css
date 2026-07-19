@@ -551,6 +551,14 @@ a.badge:focus-visible {
   .product-card {
     padding: var(--spacing-md);
   }
+
+  .why-section h2 {
+    text-align: center;
+  }
+
+  .why-section p {
+    text-align: left;
+  }
 }
 
 @media (max-width: 400px) {

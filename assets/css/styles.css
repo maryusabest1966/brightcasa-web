@@ -282,6 +282,22 @@ section:last-child {
   font-size: 0.85rem;
 }
 
+a.badge {
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+a.badge:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+a.badge:focus-visible {
+  outline: 2px solid var(--color-soft-teal);
+  outline-offset: 2px;
+}
+
 .badge--gold {
   background: var(--color-warm-gold);
   color: var(--color-text-primary);

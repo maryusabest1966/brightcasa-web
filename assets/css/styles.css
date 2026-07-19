@@ -302,6 +302,24 @@ section:last-child {
   color: #92600A;
 }
 
+/* Clickable badge (anchor) — pointer, hover, active, keyboard focus */
+a.badge {
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+a.badge:hover {
+  text-decoration: none;
+}
+a.badge--teal:hover    { background: rgba(47, 168, 161, 0.22); }
+a.badge--green:hover   { background: rgba(63, 166, 107, 0.22); }
+a.badge--teal:active   { background: rgba(47, 168, 161, 0.32); }
+a.badge--green:active  { background: rgba(63, 166, 107, 0.32); }
+a.badge:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 2px;
+}
+
 /* ---------- Product Cards ---------- */
 .product-cards {
   display: grid;

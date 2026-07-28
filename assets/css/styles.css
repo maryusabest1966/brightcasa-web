@@ -501,7 +501,7 @@ a.badge:focus-visible {
 /* ---------- Responsive ---------- */
 @media (min-width: 640px) {
   .product-cards--home {
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -859,7 +859,7 @@ a.badge:focus-visible {
 }
 
 /* ── Home layout: accommodate three product cards on desktop ─────────── */
-@media (min-width: 640px) {
+@media (min-width: 900px) {
   .product-cards--home {
     grid-template-columns: 1fr 1fr 1fr;
   }

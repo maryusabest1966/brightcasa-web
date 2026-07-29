@@ -548,6 +548,10 @@ a.badge:focus-visible {
     font-size: 2rem;
   }
 
+  .hero .subheadline {
+    text-align: left;
+  }
+
   .product-card {
     padding: var(--spacing-md);
   }
@@ -851,11 +855,6 @@ a.badge:focus-visible {
   color: rgba(255, 255, 255, 0.55);
   margin-top: var(--spacing-sm);
   letter-spacing: 0.01em;
-}
-
-/* ── FamilyNorth product card variant (tertiary) ─────────────────────── */
-.product-card--tertiary {
-  border-top: 4px solid var(--color-warm-gold);
 }
 
 /* ── Home layout: accommodate three product cards on desktop ─────────── */

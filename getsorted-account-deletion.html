@@ -234,19 +234,6 @@
       display: none;
     }
 
-    /* Small dev-only banner shown when live API is disabled — visually
-       distinct so preview reviewers know this shell is not wired to prod. */
-    .preview-banner {
-      background: rgba(242, 184, 75, 0.15);
-      border: 1px solid rgba(242, 184, 75, 0.45);
-      color: #7A4E00;
-      padding: 10px 14px;
-      border-radius: var(--radius);
-      font-size: 0.85rem;
-      margin-bottom: var(--spacing-md);
-      line-height: 1.5;
-    }
-
     .in-app-steps {
       background: var(--color-cards);
       border: 1px solid #E2E8F0;
@@ -314,11 +301,6 @@
         <h1>GetSorted Account &amp; Data Deletion</h1>
         <p>GetSorted&#8482; is a home-inventory and organization app offered by BrightCasa LLC. Use this page to request deletion of your GetSorted account and associated data.</p>
       </section>
-
-      <!-- Dev-only preview banner (hidden automatically once live API is enabled) -->
-      <div id="previewBanner" class="preview-banner" role="status" hidden>
-        <strong>Preview shell.</strong> The deletion request flow is not yet wired to the production backend. This visual shell is for review only; no request will be sent from this page.
-      </div>
 
       <section class="deletion-body" aria-labelledby="deleteInAppHeading">
         <h2 id="deleteInAppHeading">1. Delete your account in the app</h2>
@@ -452,18 +434,12 @@
 
     // ================================================================
     // CONFIG
-    // The live API integration is DISABLED by default. Flip
-    // CONFIG.liveApiEnabled to true ONLY after the GetSorted Agent
-    // confirms all six items in the Neo contract:
-    //   1. POST /api/account-deletion/request deployed
-    //   2. POST /api/account-deletion/confirm deployed
-    //   3. final request/response contracts confirmed
-    //   4. Cloudinary orphan cleanup deployed
-    //   5. shared account-deletion service deployed
-    //   6. a controlled end-to-end deletion test passes
+    // Backend integration is live. The two deletion endpoints are hosted
+    // at `apiBaseUrl`. Set liveApiEnabled to false only as a temporary
+    // kill switch if the backend needs to be taken offline.
     // ================================================================
     var CONFIG = {
-      liveApiEnabled: false,
+      liveApiEnabled: true,
       apiBaseUrl: 'https://getsorted-emergent.onrender.com',
       requestPath: '/api/account-deletion/request',
       confirmPath: '/api/account-deletion/confirm'
@@ -474,7 +450,6 @@
     var tokenInMemory = null;
 
     // ---------- Element refs ----------
-    var previewBanner    = document.getElementById('previewBanner');
     var requestSection   = document.getElementById('requestSection');
     var confirmSection   = document.getElementById('confirmSection');
     var requestForm      = document.getElementById('requestForm');
@@ -500,9 +475,7 @@
     }
 
     // ---------- Preview banner visibility ----------
-    if (!CONFIG.liveApiEnabled && previewBanner) {
-      show(previewBanner);
-    }
+    // (Removed — live API is enabled.)
 
     // ================================================================
     // Fragment-token flow

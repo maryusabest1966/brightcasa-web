@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512" role="img" aria-label="BrightCasa">
+  <defs>
+    <linearGradient id="bcRoof" gradientUnits="userSpaceOnUse" x1="10" y1="80" x2="90" y2="20">
+      <stop offset="0" stop-color="#00386D"></stop>
+      <stop offset="1" stop-color="#01919A"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" ry="22" fill="#FFFFFF"></rect>
+  <path d="M15 64 L50 26 L85 64" fill="none" stroke="url(#bcRoof)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

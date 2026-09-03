@@ -777,6 +777,59 @@ a.badge:focus-visible {
   font-size: 0.9rem;
   color: var(--color-text-secondary);
 }
+
+/* ── Beta status + secondary CTA ─────────────────────────────── */
+.beta-status {
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+.beta-status-sub {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.beta-cta-heading {
+  margin-top: var(--spacing-lg);
+  font-size: 1.5rem;
+}
+
+.beta-cta-copy {
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-secondary);
+}
+
+.beta-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .beta-cta-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+.btn-disabled-cta {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 14px 32px;
+  min-height: 48px;
+  border-radius: 9999px;
+  border: 1px solid #CBD5E0;
+  line-height: 1.4;
+  cursor: default;
+  user-select: none;
+}
 /* ── Footer nav link ─────────────────────────────────────────────── */
 .site-footer a {
   color: rgba(255,255,255,0.75);

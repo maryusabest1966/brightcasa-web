@@ -14,5 +14,5 @@
 [[redirects]]
   from = "/getsortedbeta"
   to = "https://testflight.apple.com/join/HyEvpM5S"
-  status = 301
+  status = 302
   force = true

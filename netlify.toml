@@ -16,3 +16,9 @@
   to = "https://testflight.apple.com/join/HyEvpM5S"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/getsortedandroid"
+  to = "https://play.google.com/apps/testing/com.brightcasa.getsorted"
+  status = 302
+  force = true

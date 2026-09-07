@@ -902,6 +902,15 @@ a.badge:focus-visible {
   color: var(--color-warm-gold);
 }
 
+/* ── Product-name trademark superscript (reusable) ─────────────── */
+.tm {
+  font-size: 0.5em;
+  vertical-align: super;
+  line-height: 0;
+  font-weight: 400;
+  margin-left: 0.08em;
+}
+
 /* ── Footer trademark notice ─────────────────────────────────────────── */
 .footer-tm {
   font-size: 0.78rem;

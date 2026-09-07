@@ -342,6 +342,19 @@ a.badge:focus-visible {
 
 .product-card--featured {
   border-top: 4px solid var(--color-soft-teal);
+  position: relative;
+  cursor: pointer;
+}
+
+.product-card--featured .card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.product-card--featured .badge {
+  position: relative;
+  z-index: 1;
 }
 
 .product-card--secondary {
@@ -782,6 +795,15 @@ a.badge:focus-visible {
 .beta-status {
   margin-top: var(--spacing-md);
   text-align: center;
+}
+
+.beta-status-heading {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
 }
 
 .beta-status-sub {

@@ -645,7 +645,7 @@ a.badge:focus-visible {
 }
 
 .card-header {
-  gap: 16px;
+  gap: 10px;
   margin-bottom: 16px;
 }
 

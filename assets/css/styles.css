@@ -936,9 +936,41 @@ a.badge:focus-visible {
   letter-spacing: 0.01em;
 }
 
-/* ── Home layout: accommodate three product cards on desktop ─────────── */
+/* ── Home layout: 2×2 product grid ─────────────────────────────────── */
 @media (min-width: 900px) {
   .product-cards--home {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
+}
+
+/* ── Products page: 2×2 grid at desktop widths ─────────────────────── */
+@media (min-width: 640px) {
+  .product-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Stacked wordmark (for products with two-line names) ───────────── */
+.wordmark-stacked {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  color: #2D3748;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+.wordmark-stacked-line {
+  display: block;
+}
+
+/* ── Inactive Learn more (for products without a destination yet) ──── */
+.card-link--disabled {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  cursor: default;
 }

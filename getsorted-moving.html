@@ -16,11 +16,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
-    /* GetSorted Moving — hero refinements */
+    /* GetSorted Moving — hero brand lockup (icon left of stacked wordmark) */
+    .product-hero-lockup {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto var(--spacing-md);
+      text-align: left;
+    }
+
+    .product-hero-lockup .product-hero-icon {
+      margin: 0;
+    }
+
     .product-hero .wordmark-stacked {
       font-size: 2.5rem;
-      align-items: center;
-      margin: 0 auto var(--spacing-xs);
+      align-items: flex-start;
+      margin: 0;
     }
 
     .product-hero-heading {
@@ -45,7 +58,14 @@
 
     @media (max-width: 639px) {
       .product-hero .wordmark-stacked {
-        font-size: 2rem;
+        font-size: 1.9rem;
+      }
+      .product-hero-lockup {
+        gap: 12px;
+      }
+      .product-hero-lockup .product-hero-icon {
+        width: 72px;
+        height: 72px;
       }
       .product-hero-heading {
         font-size: 1.55rem;
@@ -165,11 +185,13 @@
   <main>
     <div class="container">
       <section class="product-hero">
-        <img src="gs-moving-icon-512-trans.png" alt="GetSorted Moving app icon" class="product-hero-icon">
-        <h1 class="wordmark-stacked" aria-label="GetSorted Moving">
-          <span class="wordmark-stacked-line">GetSorted</span>
-          <span class="wordmark-stacked-line">Moving<span class="tm">&trade;</span></span>
-        </h1>
+        <div class="product-hero-lockup">
+          <img src="gs-moving-icon-512-trans.png" alt="GetSorted Moving app icon" class="product-hero-icon">
+          <h1 class="wordmark-stacked" aria-label="GetSorted Moving">
+            <span class="wordmark-stacked-line">GetSorted</span>
+            <span class="wordmark-stacked-line">Moving<span class="tm">&trade;</span></span>
+          </h1>
+        </div>
         <p class="product-hero-heading">Pack with confidence.</p>
         <p class="product-hero-subline">Know what&rsquo;s in every box and exactly where it goes.</p>
         <p><span class="badge badge--amber">Coming Soon</span></p>

@@ -341,11 +341,12 @@
           <a id="shareText" class="share-btn" href="#" aria-label="Share GetSorted by text message">Text</a>
           <a id="shareEmail" class="share-btn" href="#" aria-label="Share GetSorted by email">Email</a>
           <a id="shareFacebook" class="share-btn" href="#" target="_blank" rel="noopener" aria-label="Share GetSorted on Facebook">Facebook</a>
-          <button type="button" id="shareCopy" class="share-btn share-btn--outline" aria-label="Copy the GetSorted link">Copy Link</button>
+          <button type="button" id="shareCopyMessage" class="share-btn share-btn--outline" aria-label="Copy the personal message and GetSorted link">Copy Message</button>
+          <button type="button" id="shareCopy" class="share-btn share-btn--outline" aria-label="Copy the GetSorted link only">Copy Link</button>
           <button type="button" id="shareNative" class="share-btn" aria-label="Open your device's share menu">Share&hellip;</button>
         </div>
 
-        <p class="share-facebook-note">Facebook will share the GetSorted<span class="tm">&trade;</span> link. Copy your message first if you&rsquo;d like to add it to your post.</p>
+        <p class="share-facebook-note">Facebook will share the GetSorted<span class="tm">&trade;</span> link. Use <strong>Copy Message</strong> if you&rsquo;d like to paste your message into your post.</p>
       </section>
 
       <section>
@@ -388,6 +389,7 @@
     var textLink    = document.getElementById('shareText');
     var emailLink   = document.getElementById('shareEmail');
     var fbLink      = document.getElementById('shareFacebook');
+    var copyMsgBtn  = document.getElementById('shareCopyMessage');
     var copyBtn     = document.getElementById('shareCopy');
     var nativeBtn   = document.getElementById('shareNative');
     var feedback    = document.getElementById('copyFeedback');
@@ -440,9 +442,14 @@
         'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(GETSORTED_URL));
     }
 
+    // Copy Message button — copies the current editable message + blank line + URL
+    copyMsgBtn.addEventListener('click', function () {
+      copyToClipboard(currentMessage() + '\n\n' + GETSORTED_URL, 'Message copied!');
+    });
+
     // Copy Link button — copies just the URL
     copyBtn.addEventListener('click', function () {
-      copyToClipboard(GETSORTED_URL, 'Copied!');
+      copyToClipboard(GETSORTED_URL, 'Link copied!');
     });
 
     function copyToClipboard(text, feedbackText) {

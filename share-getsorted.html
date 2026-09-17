@@ -242,6 +242,27 @@
       text-align: center;
       line-height: 1.55;
     }
+    .share-facebook-note strong {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+    .share-facebook-note em {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+    .share-facebook-note kbd {
+      display: inline-block;
+      padding: 1px 6px;
+      margin: 0 1px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--color-text-primary);
+      background: #F1F5F9;
+      border: 1px solid #CBD5E0;
+      border-radius: 4px;
+      line-height: 1.4;
+    }
 
     /* Hide native-share button unless the API is supported (JS toggles) */
     #shareNative { display: none; }
@@ -346,7 +367,7 @@
           <button type="button" id="shareNative" class="share-btn" aria-label="Open your device's share menu">Share&hellip;</button>
         </div>
 
-        <p class="share-facebook-note">Your message will be copied when you open Facebook. Paste it into your post.</p>
+        <p class="share-facebook-note"><strong>Sharing on Facebook:</strong> First tap <strong>Copy Message</strong>, then tap <strong>Facebook</strong>. In Facebook, click or tap in the post box and choose <em>Paste</em>. On a computer, you can also press <kbd>&#8984;</kbd>+<kbd>V</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>V</kbd> (Windows).</p>
       </section>
 
       <section>
@@ -433,61 +454,11 @@
         'mailto:?subject=' + encodeURIComponent(EMAIL_SUBJECT) +
         '&body=' + encodeURIComponent(body));
 
-      // Facebook — sharer.php uses the URL and pulls Open Graph metadata.
-      // Facebook removed the `quote` parameter; message text is not embedded
-      // in the sharer. To make pasting easy, the click handler below copies
-      // the current editable message to the clipboard right before the
-      // browser follows this href in a new tab.
+      // Facebook — sharer.php uses the approved GetSorted URL and pulls
+      // Open Graph metadata. Facebook does not support pre-filling post text;
+      // the user copies the message explicitly via the Copy Message button.
       fbLink.setAttribute('href',
         'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(GETSORTED_URL));
-    }
-
-    // Facebook click — copy the CURRENT editable message (no URL — Facebook's
-    // link preview already carries the GetSorted URL). Do NOT preventDefault:
-    // the browser must be free to open the sharer in a new tab even if the
-    // clipboard write fails. Only announce success when we actually succeeded.
-    fbLink.addEventListener('click', function () {
-      var msg = currentMessage();
-      if (!msg) return;
-      copyMessageForFacebook(msg);
-    });
-
-    function copyMessageForFacebook(text) {
-      if (navigator.clipboard && window.isSecureContext) {
-        // Fire-and-forget: navigation to Facebook is not blocked by this promise.
-        navigator.clipboard.writeText(text).then(function () {
-          announceCopied('Message copied!');
-        }).catch(function () {
-          // Async path failed — try a synchronous fallback and only announce
-          // if execCommand actually reported success.
-          if (execCopyFallback(text)) announceCopied('Message copied!');
-        });
-      } else if (execCopyFallback(text)) {
-        announceCopied('Message copied!');
-      }
-    }
-
-    function execCopyFallback(text) {
-      try {
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
-        ta.style.position = 'absolute';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        var ok = document.execCommand('copy');
-        document.body.removeChild(ta);
-        return !!ok;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    function announceCopied(label) {
-      feedback.textContent = label;
-      feedback.classList.add('is-visible');
-      setTimeout(function () { feedback.classList.remove('is-visible'); }, 2200);
     }
 
     // Copy Message button — copies the current editable message + blank line + URL

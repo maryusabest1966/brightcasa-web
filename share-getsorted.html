@@ -346,7 +346,7 @@
           <button type="button" id="shareNative" class="share-btn" aria-label="Open your device's share menu">Share&hellip;</button>
         </div>
 
-        <p class="share-facebook-note">Facebook will share the GetSorted<span class="tm">&trade;</span> link. Use <strong>Copy Message</strong> if you&rsquo;d like to paste your message into your post.</p>
+        <p class="share-facebook-note">Your message will be copied when you open Facebook. Paste it into your post.</p>
       </section>
 
       <section>
@@ -435,11 +435,59 @@
 
       // Facebook — sharer.php uses the URL and pulls Open Graph metadata.
       // Facebook removed the `quote` parameter; message text is not embedded
-      // in the sharer. Users who want to include the personal message in
-      // their post can copy it first via the "Copy Link" affordance or
-      // select the text in the message box manually.
+      // in the sharer. To make pasting easy, the click handler below copies
+      // the current editable message to the clipboard right before the
+      // browser follows this href in a new tab.
       fbLink.setAttribute('href',
         'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(GETSORTED_URL));
+    }
+
+    // Facebook click — copy the CURRENT editable message (no URL — Facebook's
+    // link preview already carries the GetSorted URL). Do NOT preventDefault:
+    // the browser must be free to open the sharer in a new tab even if the
+    // clipboard write fails. Only announce success when we actually succeeded.
+    fbLink.addEventListener('click', function () {
+      var msg = currentMessage();
+      if (!msg) return;
+      copyMessageForFacebook(msg);
+    });
+
+    function copyMessageForFacebook(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        // Fire-and-forget: navigation to Facebook is not blocked by this promise.
+        navigator.clipboard.writeText(text).then(function () {
+          announceCopied('Message copied!');
+        }).catch(function () {
+          // Async path failed — try a synchronous fallback and only announce
+          // if execCommand actually reported success.
+          if (execCopyFallback(text)) announceCopied('Message copied!');
+        });
+      } else if (execCopyFallback(text)) {
+        announceCopied('Message copied!');
+      }
+    }
+
+    function execCopyFallback(text) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return !!ok;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function announceCopied(label) {
+      feedback.textContent = label;
+      feedback.classList.add('is-visible');
+      setTimeout(function () { feedback.classList.remove('is-visible'); }, 2200);
     }
 
     // Copy Message button — copies the current editable message + blank line + URL

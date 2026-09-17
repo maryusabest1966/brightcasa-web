@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share GetSorted&trade; | BrightCasa</title>
+  <meta name="description" content="Know someone who'd love GetSorted? Share an easier way to keep track of what you have and where it is.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BrightCasa">
+  <meta property="og:title" content="Share GetSorted&trade; | BrightCasa">
+  <meta property="og:description" content="Know someone who'd love GetSorted? Share an easier way to keep track of what you have and where it is.">
+  <meta property="og:url" content="https://brightcasa.co/share-getsorted.html">
+  <meta property="og:image" content="https://brightcasa.co/assets/images/getsorted-icon.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Share GetSorted&trade; | BrightCasa">
+  <meta name="twitter:description" content="Know someone who'd love GetSorted? Share an easier way to keep track of what you have and where it is.">
+  <meta name="twitter:image" content="https://brightcasa.co/assets/images/getsorted-icon.png">
+
+  <link rel="icon" type="image/svg+xml" href="/brightcasa-favicon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+  <link rel="shortcut icon" href="/favicon.ico?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Share GetSorted — page-scoped styles */
+    .share-hero-lockup {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto var(--spacing-md);
+    }
+    .share-hero-lockup .product-hero-icon {
+      margin: 0;
+      width: 80px;
+      height: 80px;
+    }
+    .share-hero-lockup h1 {
+      margin: 0;
+      font-size: 2.25rem;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .share-hero-heading {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-size: 1.85rem;
+      line-height: 1.3;
+      max-width: 720px;
+      margin: 0 auto var(--spacing-md);
+      text-align: center;
+    }
+    .share-hero-subline {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      max-width: 640px;
+      margin: 0 auto var(--spacing-sm);
+      line-height: 1.65;
+      text-align: center;
+    }
+    .share-hero-intro {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      max-width: 640px;
+      margin: 0 auto var(--spacing-md);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    /* Audience cards */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+    }
+    @media (min-width: 640px) {
+      .audience-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 960px) {
+      .audience-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .audience-card {
+      background: var(--color-cards);
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-md);
+    }
+    .audience-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--spacing-xs);
+    }
+    .audience-card p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Reason chips */
+    .reason-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: var(--spacing-sm) 0 var(--spacing-md);
+    }
+    .reason-chip {
+      background: transparent;
+      border: 1.5px solid #CBD5E0;
+      color: var(--color-text-primary);
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      cursor: pointer;
+      min-height: 44px;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .reason-chip:hover { border-color: #2D3748; }
+    .reason-chip:focus-visible {
+      outline: 2px solid #2D3748;
+      outline-offset: 2px;
+    }
+    .reason-chip[aria-pressed="true"] {
+      background: #2D3748;
+      border-color: #2D3748;
+      color: #fff;
+    }
+
+    /* Message preview */
+    .share-message-wrap {
+      max-width: 640px;
+      margin: 0 auto var(--spacing-md);
+    }
+    .share-message-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+    .share-message {
+      width: 100%;
+      min-height: 128px;
+      padding: 14px 16px;
+      background: var(--color-cards);
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .share-message:focus-visible {
+      outline: 2px solid #2D3748;
+      outline-offset: 2px;
+      border-color: #2D3748;
+    }
+
+    /* Share action buttons */
+    .share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: var(--spacing-md) 0 var(--spacing-lg);
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #2D3748;
+      color: #fff;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 12px 22px;
+      min-height: 48px;
+      border-radius: 9999px;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+    .share-btn:hover { background: #1A202C; }
+    .share-btn:focus-visible {
+      outline: 2px solid #2D3748;
+      outline-offset: 2px;
+    }
+    .share-btn:active { transform: translateY(1px); }
+    .share-btn--outline {
+      background: transparent;
+      color: #2D3748;
+      border: 1.5px solid #CBD5E0;
+    }
+    .share-btn--outline:hover {
+      background: transparent;
+      border-color: #2D3748;
+    }
+
+    .copy-feedback {
+      display: none;
+      max-width: 640px;
+      margin: 0 auto var(--spacing-md);
+      padding: 10px 16px;
+      background: #E6FFFA;
+      border: 1px solid #38B2AC;
+      color: #234E52;
+      border-radius: var(--radius);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .copy-feedback.is-visible { display: block; }
+
+    /* Hide native-share button unless the API is supported (JS toggles) */
+    #shareNative { display: none; }
+
+    /* Screen-reader only helper */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+
+    @media (max-width: 639px) {
+      .share-hero-lockup { gap: 12px; }
+      .share-hero-lockup .product-hero-icon { width: 64px; height: 64px; }
+      .share-hero-lockup h1 { font-size: 1.65rem; }
+      .share-hero-heading { font-size: 1.45rem; }
+      .share-actions { gap: 10px; }
+      .share-btn { padding: 12px 18px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="site-nav">
+        <div class="logo"><a href="index.html"><img src="assets/images/brightcasa-logo-light.png?v=2" alt="BrightCasa" class="nav-logo"></a></div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="product-hero">
+        <div class="share-hero-lockup">
+          <img src="assets/images/getsorted-icon.png" alt="GetSorted app icon" class="product-hero-icon">
+          <h1>GetSorted<span class="tm">&trade;</span></h1>
+        </div>
+        <p class="share-hero-heading">Know someone who&rsquo;d love GetSorted<span class="tm">&trade;</span>?</p>
+        <p class="share-hero-subline">Share a simpler way to keep track of what you have and where it is.</p>
+        <p class="share-hero-intro">Whether they&rsquo;re already organized, getting started, preparing for a move, or simply want an easier way to find things later, GetSorted<span class="tm">&trade;</span> gives them a visual way to keep track of what they have and where it is.</p>
+      </section>
+
+      <section>
+        <h2>GetSorted<span class="tm">&trade;</span> might be perfect for someone who&hellip;</h2>
+        <div class="audience-grid">
+          <div class="audience-card">
+            <h3>Loves being organized</h3>
+            <p>Already has a system and wants to take it one step further.</p>
+          </div>
+          <div class="audience-card">
+            <h3>Has a move coming up</h3>
+            <p>Wants a clearer picture of what they have before packing begins.</p>
+          </div>
+          <div class="audience-card">
+            <h3>Wants a home inventory</h3>
+            <p>Would like photos and useful information about important belongings in one place.</p>
+          </div>
+          <div class="audience-card">
+            <h3>Wants to find things later</h3>
+            <p>Likes knowing exactly where something was put.</p>
+          </div>
+          <div class="audience-card">
+            <h3>Is ready to get started</h3>
+            <p>Wants a simple way to begin organizing one room, container or item at a time.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Why are you sharing GetSorted<span class="tm">&trade;</span>?</h2>
+        <p class="share-hero-subline">Pick a reason to update the message below. You can edit the message before you send it.</p>
+
+        <div class="reason-group" role="group" aria-label="Reason for sharing GetSorted">
+          <button type="button" class="reason-chip" data-reason="general" aria-pressed="true">Just thought you&rsquo;d like it</button>
+          <button type="button" class="reason-chip" data-reason="moving" aria-pressed="false">You&rsquo;re moving</button>
+          <button type="button" class="reason-chip" data-reason="inventory" aria-pressed="false">Great for home inventory</button>
+        </div>
+
+        <div class="share-message-wrap">
+          <label for="shareMessage" class="share-message-label">Your message</label>
+          <textarea id="shareMessage" class="share-message" aria-live="polite" spellcheck="true"></textarea>
+        </div>
+
+        <div id="copyFeedback" class="copy-feedback" role="status" aria-live="polite">Copied!</div>
+
+        <div class="share-actions">
+          <a id="shareText" class="share-btn" href="#" aria-label="Share GetSorted by text message">Text</a>
+          <a id="shareEmail" class="share-btn" href="#" aria-label="Share GetSorted by email">Email</a>
+          <a id="shareFacebook" class="share-btn" href="#" target="_blank" rel="noopener" aria-label="Share GetSorted on Facebook">Facebook</a>
+          <button type="button" id="shareCopy" class="share-btn share-btn--outline" aria-label="Copy the GetSorted link">Copy Link</button>
+          <button type="button" id="shareNative" class="share-btn" aria-label="Open your device's share menu">Share&hellip;</button>
+        </div>
+      </section>
+
+      <section>
+        <p class="share-hero-subline" style="margin-top: var(--spacing-md);"><a href="getsorted.html">Learn more about GetSorted<span class="tm">&trade;</span> &rarr;</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap"><img src="assets/images/brightcasa-logo-light.png?v=2" alt="BrightCasa" class="footer-logo"></div>
+      <p class="footer-tagline">Making everyday life a little easier.</p>
+    </div>
+    <p class="footer-info--desktop">BrightCasa LLC &middot; Foley, Alabama &middot; <a href="mailto:hello@brightcasa.co">hello@brightcasa.co</a></p>
+    <div class="footer-info--mobile">
+      <p>BrightCasa LLC</p>
+      <p>Foley, Alabama</p>
+      <p><a href="mailto:hello@brightcasa.co">hello@brightcasa.co</a></p>
+    </div>
+    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p>&copy; 2026 BrightCasa LLC. All rights reserved.</p>
+    <p class="footer-tm">BrightCasa&trade;, GetSorted&trade;, GetSorted Moving&trade;, FamilyNorth&trade;, and SpendBright&trade; are trademarks of BrightCasa LLC.</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var GETSORTED_URL = 'https://brightcasa.co/getsorted.html';
+    var EMAIL_SUBJECT = 'Thought you might like GetSorted\u2122';
+
+    var MESSAGES = {
+      general:   "I thought you might like GetSorted\u2122. It's an easy way to keep track of what you have and where it is using photos, rooms and containers. Thought I'd share it with you!",
+      moving:    "I thought of you because you have a move coming up. GetSorted\u2122 can help you keep track of what you have before you start packing. Thought I'd share it with you!",
+      inventory: "I thought you might like GetSorted\u2122 for keeping a home inventory. It's an easy way to keep photos and details about what you have and remember where things are. Thought I'd share it with you!"
+    };
+
+    var chips       = document.querySelectorAll('.reason-chip');
+    var messageBox  = document.getElementById('shareMessage');
+    var textLink    = document.getElementById('shareText');
+    var emailLink   = document.getElementById('shareEmail');
+    var fbLink      = document.getElementById('shareFacebook');
+    var copyBtn     = document.getElementById('shareCopy');
+    var nativeBtn   = document.getElementById('shareNative');
+    var feedback    = document.getElementById('copyFeedback');
+
+    // Initialize with default reason
+    messageBox.value = MESSAGES.general;
+    updateShareLinks();
+
+    // Show native share button only when supported
+    if (navigator.share) {
+      nativeBtn.style.display = 'inline-flex';
+    }
+
+    // Reason-chip selection updates message and share links
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        chip.setAttribute('aria-pressed', 'true');
+        var reason = chip.getAttribute('data-reason');
+        messageBox.value = MESSAGES[reason] || MESSAGES.general;
+        updateShareLinks();
+      });
+    });
+
+    // Whenever the user edits the message, keep share links in sync
+    messageBox.addEventListener('input', updateShareLinks);
+
+    function currentMessage() {
+      return (messageBox.value || '').trim();
+    }
+
+    function updateShareLinks() {
+      var msg = currentMessage();
+      var body = msg + '\n\n' + GETSORTED_URL;
+
+      // SMS — use ?&body= format that works on both iOS and Android
+      textLink.setAttribute('href', 'sms:?&body=' + encodeURIComponent(body));
+
+      // Email
+      emailLink.setAttribute('href',
+        'mailto:?subject=' + encodeURIComponent(EMAIL_SUBJECT) +
+        '&body=' + encodeURIComponent(body));
+
+      // Facebook — sharer.php uses the URL and pulls Open Graph metadata.
+      // Facebook removed the `quote` parameter; message text is not embedded
+      // in the sharer. Clicking Facebook also copies the message to clipboard
+      // so the user can paste it as their post caption.
+      fbLink.setAttribute('href',
+        'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(GETSORTED_URL));
+    }
+
+    // Facebook click also copies the message so the user can paste it
+    fbLink.addEventListener('click', function () {
+      copyToClipboard(currentMessage() + '\n\n' + GETSORTED_URL);
+    });
+
+    // Copy Link button — copies just the URL
+    copyBtn.addEventListener('click', function () {
+      copyToClipboard(GETSORTED_URL, 'Copied!');
+    });
+
+    function copyToClipboard(text, feedbackText) {
+      var done = function () {
+        if (feedbackText) {
+          feedback.textContent = feedbackText;
+          feedback.classList.add('is-visible');
+          setTimeout(function () { feedback.classList.remove('is-visible'); }, 2200);
+        }
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy() {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done();
+        } catch (e) {
+          // Silent failure — user can select the URL manually
+        }
+      }
+    }
+
+    // Native Web Share API
+    if (navigator.share) {
+      nativeBtn.addEventListener('click', function () {
+        navigator.share({
+          title: 'GetSorted\u2122',
+          text: currentMessage(),
+          url: GETSORTED_URL
+        }).catch(function () {
+          // User cancelled or an error occurred; no action needed
+        });
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -234,6 +234,15 @@
     }
     .copy-feedback.is-visible { display: block; }
 
+    .share-facebook-note {
+      max-width: 640px;
+      margin: -6px auto var(--spacing-md);
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      text-align: center;
+      line-height: 1.55;
+    }
+
     /* Hide native-share button unless the API is supported (JS toggles) */
     #shareNative { display: none; }
 
@@ -323,7 +332,7 @@
 
         <div class="share-message-wrap">
           <label for="shareMessage" class="share-message-label">Your message</label>
-          <textarea id="shareMessage" class="share-message" aria-live="polite" spellcheck="true"></textarea>
+          <textarea id="shareMessage" class="share-message" spellcheck="true"></textarea>
         </div>
 
         <div id="copyFeedback" class="copy-feedback" role="status" aria-live="polite">Copied!</div>
@@ -335,6 +344,8 @@
           <button type="button" id="shareCopy" class="share-btn share-btn--outline" aria-label="Copy the GetSorted link">Copy Link</button>
           <button type="button" id="shareNative" class="share-btn" aria-label="Open your device's share menu">Share&hellip;</button>
         </div>
+
+        <p class="share-facebook-note">Facebook will share the GetSorted<span class="tm">&trade;</span> link. Copy your message first if you&rsquo;d like to add it to your post.</p>
       </section>
 
       <section>
@@ -422,16 +433,12 @@
 
       // Facebook — sharer.php uses the URL and pulls Open Graph metadata.
       // Facebook removed the `quote` parameter; message text is not embedded
-      // in the sharer. Clicking Facebook also copies the message to clipboard
-      // so the user can paste it as their post caption.
+      // in the sharer. Users who want to include the personal message in
+      // their post can copy it first via the "Copy Link" affordance or
+      // select the text in the message box manually.
       fbLink.setAttribute('href',
         'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(GETSORTED_URL));
     }
-
-    // Facebook click also copies the message so the user can paste it
-    fbLink.addEventListener('click', function () {
-      copyToClipboard(currentMessage() + '\n\n' + GETSORTED_URL);
-    });
 
     // Copy Link button — copies just the URL
     copyBtn.addEventListener('click', function () {

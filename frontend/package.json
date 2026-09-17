@@ -1,0 +1,12 @@
+{
+  "name": "brightcasa-web-static-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lightweight static file server for the BrightCasa vanilla HTML/CSS/JS site (preview only)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

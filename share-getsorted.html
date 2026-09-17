@@ -220,6 +220,24 @@
       border-color: #2D3748;
     }
 
+    /* Facebook "copy first" prep group — sits above the main share methods */
+    .share-facebook-prep {
+      max-width: 640px;
+      margin: var(--spacing-md) auto var(--spacing-sm);
+      text-align: center;
+    }
+    .share-fb-prep-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      margin: 0 0 var(--spacing-sm);
+      line-height: 1.5;
+    }
+    .share-actions--prep {
+      margin: 0 auto var(--spacing-xs);
+    }
+
     .copy-feedback {
       display: none;
       max-width: 640px;
@@ -356,18 +374,24 @@
           <textarea id="shareMessage" class="share-message" spellcheck="true"></textarea>
         </div>
 
+        <div class="share-facebook-prep">
+          <p class="share-fb-prep-label">For Facebook, copy your message first:</p>
+          <div class="share-actions share-actions--prep">
+            <button type="button" id="shareCopyMessage" class="share-btn share-btn--outline" aria-label="Copy the personal message and GetSorted link">Copy Message</button>
+          </div>
+        </div>
+
         <div id="copyFeedback" class="copy-feedback" role="status" aria-live="polite">Copied!</div>
 
         <div class="share-actions">
           <a id="shareText" class="share-btn" href="#" aria-label="Share GetSorted by text message">Text</a>
           <a id="shareEmail" class="share-btn" href="#" aria-label="Share GetSorted by email">Email</a>
           <a id="shareFacebook" class="share-btn" href="#" target="_blank" rel="noopener" aria-label="Share GetSorted on Facebook">Facebook</a>
-          <button type="button" id="shareCopyMessage" class="share-btn share-btn--outline" aria-label="Copy the personal message and GetSorted link">Copy Message</button>
           <button type="button" id="shareCopy" class="share-btn share-btn--outline" aria-label="Copy the GetSorted link only">Copy Link</button>
           <button type="button" id="shareNative" class="share-btn" aria-label="Open your device's share menu">Share&hellip;</button>
         </div>
 
-        <p class="share-facebook-note"><strong>Sharing on Facebook:</strong> First tap <strong>Copy Message</strong>, then tap <strong>Facebook</strong>. In Facebook, click or tap in the post box and choose <em>Paste</em>. On a computer, you can also press <kbd>&#8984;</kbd>+<kbd>V</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>V</kbd> (Windows).</p>
+        <p class="share-facebook-note"><strong>Sharing on Facebook:</strong> After you tap <strong>Copy Message</strong>, tap <strong>Facebook</strong>. In Facebook, click or tap in the post box and choose <em>Paste</em>. On a computer, you can also press <kbd>&#8984;</kbd>+<kbd>V</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>V</kbd> (Windows).</p>
       </section>
 
       <section>

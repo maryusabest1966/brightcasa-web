@@ -775,6 +775,23 @@ a.badge:focus-visible {
   outline-offset: 3px;
 }
 
+.btn-primary-cta--outline {
+  background: transparent;
+  color: var(--color-soft-teal);
+  border: 2px solid var(--color-soft-teal);
+  padding: 12px 30px;
+}
+
+.btn-primary-cta--outline:hover {
+  background: rgba(47, 168, 161, 0.08);
+  color: var(--color-soft-teal);
+  box-shadow: none;
+}
+
+.beta-cta-share {
+  margin-top: 14px;
+}
+
 .beta-cta-block {
   margin-top: var(--spacing-md);
   text-align: center;

@@ -864,6 +864,13 @@ a.badge:focus-visible {
   cursor: default;
   user-select: none;
 }
+
+.beta-android-status {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
 /* ── Footer nav link ─────────────────────────────────────────────── */
 .site-footer a {
   color: rgba(255,255,255,0.75);

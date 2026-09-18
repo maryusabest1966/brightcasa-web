@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only verification of GetSorted Android beta messaging on /getsorted.html. All 6 acceptance criteria passed. iPhone beta button unchanged; Android CTA is a non-clickable span with aria-disabled='true', no href, does not navigate; nearby status text present; Share button intact; share-getsorted.html loads (200); no horizontal overflow at 1440px or 390px.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static site served by node/express on port 3000. Base URL = https://a7cf6bb3-fe91-419f-aa1a-f1a94c91b665.preview.emergentagent.com. Pages are plain HTML (getsorted.html, share-getsorted.html). No data-testid; select by text/href.",
+  "verification_details": {
+    "iphone_button": {"text": "Join the iPhone Beta", "href": "https://testflight.apple.com/join/HyEvpM5S", "target": "_blank"},
+    "android_control": {"tag": "SPAN", "text": "Android — Coming Soon", "href": null, "aria_disabled": "true", "click_did_not_navigate": true, "no_new_tab_opened": true},
+    "status_text": "Android beta is being updated and will reopen soon.",
+    "share_button": {"text": "Share GetSorted™", "href": "share-getsorted.html"},
+    "share_page_http_status": 200,
+    "overflow": {"desktop_1440": false, "mobile_390": false}
+  }
+}

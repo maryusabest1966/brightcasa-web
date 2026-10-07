@@ -131,8 +131,15 @@ section:last-child {
 .site-header .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 68px;
+}
+
+/* Shared nav row: logo + links on one horizontal line, vertically centered */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  width: 100%;
 }
 
 /* Logo placeholder — replace with actual logo image when available */
@@ -176,9 +183,10 @@ section:last-child {
 .nav-toggle-label {
   display: none;
   cursor: pointer;
-  width: 28px;
-  height: 20px;
+  width: 44px;
+  height: 44px;
   position: relative;
+  flex: 0 0 auto;
 }
 
 .nav-toggle-label span,
@@ -187,24 +195,28 @@ section:last-child {
   display: block;
   background: var(--color-text-primary);
   height: 2px;
-  width: 100%;
+  width: 24px;
   border-radius: 2px;
   position: absolute;
   transition: transform 0.3s, opacity 0.3s;
 }
 
 .nav-toggle-label span {
-  top: 9px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .nav-toggle-label span::before {
   content: '';
   top: -7px;
+  left: 0;
 }
 
 .nav-toggle-label span::after {
   content: '';
   top: 7px;
+  left: 0;
 }
 
 /* ---------- Footer ---------- */
@@ -516,6 +528,24 @@ a.badge:focus-visible {
 @media (max-width: 639px) {
   .nav-toggle-label {
     display: block;
+    margin-left: auto;
+  }
+
+  /* Visually-hidden but focusable/announced toggle control on mobile */
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .nav-toggle:focus-visible + .nav-toggle-label {
+    outline: 3px solid rgba(47, 168, 161, 0.5);
+    outline-offset: 2px;
+    border-radius: 8px;
   }
 
   .nav-links {
@@ -684,7 +714,7 @@ a.badge:focus-visible {
 
 /* ── Logo images ──────────────────────────────────────────────────── */
 .nav-logo {
-  height: 52px;
+  height: clamp(38px, 11vw, 52px);
   width: auto;
   display: block;
 }

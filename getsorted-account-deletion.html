@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
+    /* Button display rules must never override accepted-request visibility. */
+    .deletion-body [hidden] { display: none !important; }
     /* ── Account-deletion page: minimal form + state styling
        Mirrors the beta-form patterns already in styles.css / getsorted-beta.html
        so this page feels native to the existing BrightCasa design system.        */
@@ -309,8 +311,8 @@
       </section>
 
       <section class="deletion-body" aria-labelledby="deleteInAppHeading">
-        <h2 id="deleteInAppHeading">1. Delete your account in the app</h2>
-        <p>The fastest way to delete your GetSorted account is from inside the app.</p>
+        <h2 id="deleteInAppHeading">1. Start from the app</h2>
+        <p>In the updated app, Delete Account opens this page. You must verify your email and explicitly confirm before deletion starts. Opening this page does not delete anything.</p>
         <div class="in-app-steps">
           <p style="margin:0;">Open GetSorted and go to:<br>
             <strong>Settings &rarr; Account &rarr; Delete Account</strong></p>
@@ -322,8 +324,8 @@
            Shown when no in-memory fragment token is present on load.
            ============================================================ -->
       <section class="deletion-body" id="requestSection" aria-labelledby="requestHeading">
-        <h2 id="requestHeading">2. Delete without access to the app</h2>
-        <p>If you cannot access the app, enter the email address associated with your GetSorted account. We&rsquo;ll send a short-lived confirmation link if an account exists for that address.</p>
+        <h2 id="requestHeading">2. Request your confirmation link</h2>
+        <p>Enter the email address associated with your GetSorted account. We&rsquo;ll send a short-lived confirmation link if an account exists for that address. If you already confirmed, a new link lets you check the saved request.</p>
 
         <form class="deletion-form" id="requestForm" novalidate autocomplete="on">
           <div class="form-group">
@@ -361,9 +363,9 @@
            ============================================================ -->
       <section class="deletion-body" id="confirmSection" aria-labelledby="confirmHeading" hidden>
         <h2 id="confirmHeading">Permanently delete your GetSorted account?</h2>
-        <div class="confirm-summary">
+        <div class="confirm-summary" id="confirmSummary">
           <h3>This action cannot be undone.</h3>
-          <p>Your GetSorted account and active associated data will be permanently deleted.</p>
+          <p>Confirming saves your deletion request and blocks further changes to your account. Completion may require a review of photo uploads or shared Property ownership. Your account is not deleted until completion is confirmed.</p>
         </div>
         <div class="btn-row">
           <button type="button" class="btn-danger" id="confirmDeleteBtn">Delete my GetSorted account</button>
@@ -371,7 +373,7 @@
         </div>
 
         <div class="status-block status-block--success" id="confirmSuccessMsg" role="status" aria-live="polite" hidden>
-          Your GetSorted account and active GetSorted data have been deleted.
+          Your GetSorted account and its exclusively owned data have been deleted.
         </div>
 
         <div class="status-block status-block--error" id="confirmInvalidMsg" role="alert" aria-live="assertive" hidden>
@@ -388,7 +390,7 @@
            ============================================================ -->
       <section class="deletion-body" aria-labelledby="removesHeading">
         <h2 id="removesHeading">What deletion removes</h2>
-        <p>When deletion completes, GetSorted removes active data associated with your account, including:</p>
+        <p>When deletion completes, GetSorted removes your account and its exclusively owned active data, including:</p>
         <ul>
           <li>Account and profile information</li>
           <li>Authentication data</li>
@@ -397,9 +399,10 @@
           <li>Inventory items</li>
           <li>Categories</li>
           <li>Scan and review-session records</li>
-          <li>Password-reset and account-deletion request records, as applicable</li>
+          <li>Password-reset and temporary email-confirmation records</li>
           <li>Uploaded GetSorted photos that belong exclusively to your account</li>
         </ul>
+        <p>Another person&rsquo;s account and inventory they remain entitled to access are not included. Shared Property ownership or shared photos require a decision before completion. This process does not cancel a subscription.</p>
       </section>
 
       <!-- ============================================================
@@ -407,7 +410,7 @@
            ============================================================ -->
       <section class="deletion-body" aria-labelledby="retentionHeading">
         <h2 id="retentionHeading">Data that may remain temporarily</h2>
-        <p>Active account data is deleted when the request completes. Limited copies may remain temporarily in backups, security logs, delivery records, caches, or service-provider systems until their normal retention periods expire. These copies are not used to restore your account. Information may also be retained when required by law.</p>
+        <p>Exclusively owned active account data is deleted when the request completes. A minimal deletion-status receipt remains so the confirmed request is not lost and completion can be checked. Limited copies may remain temporarily in backups, security logs, delivery records, caches, or service-provider systems until their normal retention periods expire. These copies are not used to restore your account. Information may also be retained when required by law.</p>
       </section>
 
       <section class="deletion-body" aria-labelledby="moreHeading">
@@ -440,7 +443,7 @@
 
     // ================================================================
     // CONFIG
-    // Backend integration is live. The two deletion endpoints are hosted
+    // Backend integration uses the reviewed request, confirmation and status endpoints hosted
     // at `apiBaseUrl`. Set liveApiEnabled to false only as a temporary
     // kill switch if the backend needs to be taken offline.
     // ================================================================
@@ -448,7 +451,8 @@
       liveApiEnabled: true,
       apiBaseUrl: 'https://getsorted-emergent.onrender.com',
       requestPath: '/api/account-deletion/request',
-      confirmPath: '/api/account-deletion/confirm'
+      confirmPath: '/api/account-deletion/confirm',
+      statusPath: '/api/account-deletion/status'
     };
 
     // In-memory only. NEVER persisted to localStorage/sessionStorage/cookies.
@@ -469,6 +473,65 @@
     var confirmSuccessMsg = document.getElementById('confirmSuccessMsg');
     var confirmInvalidMsg = document.getElementById('confirmInvalidMsg');
     var confirmErrorMsg   = document.getElementById('confirmErrorMsg');
+    var confirmSummary = document.getElementById('confirmSummary');
+    var confirmHeading = document.getElementById('confirmHeading');
+    var pendingMessage = document.createElement('p');
+    pendingMessage.className = 'status-block status-block--info';
+    pendingMessage.setAttribute('role', 'status');
+    pendingMessage.hidden = true;
+    confirmSection.appendChild(pendingMessage);
+    var checkStatusBtn = document.createElement('button');
+    checkStatusBtn.type = 'button';
+    checkStatusBtn.className = 'btn-secondary';
+    checkStatusBtn.textContent = 'Check deletion status';
+    checkStatusBtn.hidden = true;
+    confirmSection.appendChild(checkStatusBtn);
+
+    function showDeletionResult(body) {
+      if (body && body.status === 'deleted' && body.ok === true) {
+        hide(confirmSummary); hide(confirmDeleteBtn); hide(cancelDeleteBtn);
+        confirmHeading.textContent = 'Account deletion complete';
+        hide(pendingMessage); hide(checkStatusBtn); show(confirmSuccessMsg);
+        clearInMemoryToken(); confirmDeleteBtn.disabled = true;
+        cancelDeleteBtn.disabled = true; confirmDeleteBtn.textContent = 'Deleted';
+        return true;
+      }
+      var messages = {
+        awaiting_upload_review: 'Your deletion request is saved. Photo uploads must be checked before deletion can finish. Your account is not deleted yet. For help, contact support@brightcasa.co.',
+        ownership_review: 'Your deletion request is saved. A shared Property or photo needs an ownership decision before deletion can finish. Shared inventory has not been deleted. Contact support@brightcasa.co.',
+        deleting: 'Your confirmed account deletion is in progress. It has not finished yet.',
+        review_required: 'Your deletion request is saved, but deletion has not finished. Contact support@brightcasa.co so it can be reviewed.'
+      };
+      if (body && messages[body.status]) {
+        hide(confirmSummary); confirmHeading.textContent = 'Deletion request status';
+        pendingMessage.textContent = messages[body.status]; show(pendingMessage);
+        show(checkStatusBtn); hide(confirmErrorMsg); hide(confirmInvalidMsg);
+        confirmDeleteBtn.hidden = true; cancelDeleteBtn.hidden = true;
+        return true;
+      }
+      return false;
+    }
+    function checkDeletionStatus() {
+      if (!tokenInMemory) return;
+      checkStatusBtn.disabled = true;
+      var statusToken = tokenInMemory;
+      return fetch(CONFIG.apiBaseUrl + CONFIG.statusPath, {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({token:statusToken})
+      }).then(function (res) {
+        if (statusToken !== tokenInMemory) return;
+        if (res.status === 200) return res.json().then(function (body) {
+          if (statusToken !== tokenInMemory) return;
+          if (!showDeletionResult(body)) show(confirmErrorMsg);
+        });
+        if (!checkStatusBtn.hidden) {
+          pendingMessage.textContent = 'Could not check completion. Your confirmed request is still saved. Please try again or request a fresh email link.';
+        }
+      }).catch(function () {
+        if (!checkStatusBtn.hidden) pendingMessage.textContent = 'Could not check completion. Your confirmed request is still saved. Please try again.';
+      }).finally(function () {checkStatusBtn.disabled=false;});
+    }
+    checkStatusBtn.addEventListener('click', checkDeletionStatus);
 
     // ---------- Utility ----------
     function show(el)  { if (el) el.hidden = false; }
@@ -509,6 +572,8 @@
             // Swap sections
             hide(requestSection);
             show(confirmSection);
+            // Read status only. This never confirms or starts deletion.
+            void checkDeletionStatus();
             // Do NOT auto-focus destructive button. Focus the confirm heading
             // so screen-reader users hear the state change first.
             var h = document.getElementById('confirmHeading');
@@ -615,7 +680,9 @@
       clearInMemoryToken();
       hide(confirmSuccessMsg);
       hide(confirmInvalidMsg);
-      hide(confirmErrorMsg);
+      hide(confirmErrorMsg); hide(pendingMessage); hide(checkStatusBtn);
+      show(confirmSummary); confirmHeading.textContent = 'Permanently delete your GetSorted account?';
+      confirmDeleteBtn.hidden = false; cancelDeleteBtn.hidden = false;
       hide(confirmSection);
       show(requestSection);
       // Focus first section 2 heading for a11y
@@ -669,14 +736,10 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token: tokenSnapshot })
         }).then(function (res) {
-          if (res.status === 200) {
-            show(confirmSuccessMsg);
-            // Terminal success — clear token from memory and disable buttons
-            clearInMemoryToken();
-            confirmDeleteBtn.disabled = true;
-            cancelDeleteBtn.disabled = true;
-            confirmDeleteBtn.textContent = 'Deleted';
-            return;
+          if (res.status === 200 || res.status === 202) {
+            return res.json().then(function (body) {
+              if (!showDeletionResult(body)) show(confirmErrorMsg);
+            });
           }
           if (res.status === 400 || res.status === 410) {
             show(confirmInvalidMsg);
@@ -705,3 +768,4 @@
   </script>
 </body>
 </html>
+

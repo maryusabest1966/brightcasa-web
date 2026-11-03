@@ -1028,3 +1028,10 @@ a.badge:focus-visible {
   opacity: 0.6;
   cursor: default;
 }
+
+/* NoteRobin: reuse the family layout and type with its solid app teal. */
+.product-card--noterobin { border-top: 4px solid #1D6E69; }
+.noterobin-intro { max-width: 620px; margin: 0 auto 24px; color: var(--color-text-secondary); }
+.noterobin-beta-button { background: #1D6E69; }
+.noterobin-beta-button:hover { background: #15534F; }
+.noterobin-beta-button:focus-visible { outline: 3px solid #1D6E69; outline-offset: 4px; }

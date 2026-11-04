@@ -22,3 +22,9 @@
   to = "https://play.google.com/apps/testing/com.brightcasa.getsorted"
   status = 302
   force = true
+
+[[redirects]]
+  from = "/noterobinbeta"
+  to = "https://testflight.apple.com/join/WWrysHUG"
+  status = 302
+  force = true

@@ -1,0 +1,10 @@
+/* Scoped to the NoteRobin tutorial; other product pages are unchanged. */
+.noterobin-tutorial { scroll-margin-top: 7rem; }
+.noterobin-tutorial .tutorial-eyebrow { color: #1D6E69; font-weight: 600; margin-bottom: .4rem; }
+.noterobin-tutorial video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #FCF8F0; border: 1px solid #CFC2AD; border-radius: 12px; margin: 1.25rem 0; }
+.noterobin-tutorial .tutorial-written-guide { margin-top: 1rem; }
+.noterobin-tutorial summary { cursor: pointer; min-height: 44px; padding: .65rem 0; color: #1D6E69; font-weight: 600; }
+.noterobin-tutorial summary:focus-visible, .noterobin-tutorial video:focus-visible { outline: 3px solid #1D6E69; outline-offset: 4px; }
+.noterobin-tutorial ol { padding-left: 1.5rem; }
+.noterobin-tutorial li { margin: .8rem 0; padding-left: .25rem; }
+@media (max-width: 480px) { .noterobin-tutorial { padding: 1rem; } }

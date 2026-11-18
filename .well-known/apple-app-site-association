@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "ZHBKCXH7MZ.co.brightcasa.NoteRobin"
+        ],
+        "components": [
+          {
+            "/": "/noterobin/open",
+            "comment": "Open the authenticated Text to Note inbox; no note data in URL."
+          }
+        ]
+      }
+    ]
+  }
+}

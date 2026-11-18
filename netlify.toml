@@ -28,3 +28,21 @@
   to = "https://testflight.apple.com/join/WWrysHUG"
   status = 302
   force = true
+
+[[headers]]
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/noterobin/open"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, nofollow"
+
+[[redirects]]
+  from = "/noterobin/open"
+  to = "/noterobin-open.html"
+  status = 200
+  force = true
